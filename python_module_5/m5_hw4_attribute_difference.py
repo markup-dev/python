@@ -12,4 +12,3 @@ spis = []
 for i in range(40):
 	spis.append(Building())
 	print(spis[i].info())
-
