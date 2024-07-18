@@ -12,7 +12,7 @@
 
 
 def calc(line):
-    # print(f'Read line {line}', flush=True)
+    print(f'Read line {line}', flush=True)
     operand_1, operation, operand_2 = line.split(' ')
     operand_1 = int(operand_1)
     operand_2 = int(operand_2)
@@ -29,7 +29,7 @@ def calc(line):
     elif operation == '%':
         value = operand_1 % operand_2
     else:
-        raise ValueError('Unknown operation {operation}')
+        raise ValueError(f'Unknown operation {operation}')
     return value
 
 
