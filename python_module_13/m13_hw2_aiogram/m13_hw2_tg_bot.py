@@ -2,11 +2,21 @@ from aiogram import Bot, Dispatcher, executor, types
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from aiogram.dispatcher.filters.state import State, StatesGroup
 from aiogram.dispatcher import FSMContext
+from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 import asyncio
 
 api = ''
 bot = Bot(token=api)
 dp = Dispatcher(bot, storage=MemoryStorage())
+
+kb = ReplyKeyboardMarkup()
+btn_calc = KeyboardButton(text='Рассчитать')
+btn_info = KeyboardButton(text='Информация')
+
+kb.add(btn_calc)
+kb.add(btn_info)
+
+kb.resize_keyboard = True
 
 
 class UserState(StatesGroup):
@@ -17,10 +27,10 @@ class UserState(StatesGroup):
 
 @dp.message_handler(commands=['start'])
 async def start(message):
-	await message.answer('Привет! Я бот помогающий твоему здоровью.')
+	await message.answer('Привет! Я бот помогающий твоему здоровью.', reply_markup=kb)
 
 
-@dp.message_handler(text=['Calories'])
+@dp.message_handler(text=['Рассчитать'])
 async def set_age(message):
 	await message.answer('Введите свой возраст:')
 	await UserState.age.set()
