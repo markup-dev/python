@@ -1,0 +1,5 @@
+API = '7481435870:AAFTOrDKmLRBZKanushb8WKGqM32XQ6ZtfE'
+
+priceS = 1500
+priceM = 2000
+priceL = 3000
