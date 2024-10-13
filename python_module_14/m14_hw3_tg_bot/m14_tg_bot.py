@@ -5,6 +5,13 @@ from aiogram.dispatcher import FSMContext
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 import asyncio
+from crud_functions import initiate_db, get_all_products, add_products
+
+# initiate_db()
+# add_products()
+
+products = get_all_products()
+
 
 api = ''
 bot = Bot(token=api)
@@ -63,9 +70,9 @@ async def start(message):
 
 @dp.message_handler(text=['Купить'])
 async def get_buying_list(message):
-	for i in range(1, 5):
-		await message.answer(f'Название: Продукт {i} | Описание: описание {i} | Цена: {i * 100}')
-		with open(f'files/banan{i}.png', 'rb') as img:
+	for i in range(len(products)):
+		await message.answer(f'Название: {products[i][1]} | Описание: {products[i][2]} | Цена: {products[i][3]}')
+		with open(f'files/banan{i+1}.png', 'rb') as img:
 			await message.answer_photo(img, 'Выберите продукт для покупки:', reply_markup=inline_menu)
 
 
