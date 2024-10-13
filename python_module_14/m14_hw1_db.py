@@ -31,7 +31,7 @@ cursor = connection.cursor()
 # for user in users:
 # 	print(f'Имя: {user[0]} | Почта: {user[1]} | Возраст: {user[2]} | Баланс: {user[3]}')
 
-cursor.execute('DELETE FROM Users Where id = ?', (6, ))
+# cursor.execute('DELETE FROM Users Where id = ?', (6, ))
 
 cursor.execute('SELECT COUNT(*) FROM Users')
 total_users = cursor.fetchone()[0]
