@@ -5,13 +5,13 @@ from aiogram.dispatcher import FSMContext
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 import asyncio
-from crud_functions import initiate_db, get_all_products, add_products
+from crud_functions import initiate_db, get_all_products, add_products, add_user, is_included
 
-# initiate_db()
+initiate_db()
 # add_products()
 
-products = get_all_products()
 
+products = get_all_products()
 
 api = ''
 bot = Bot(token=api)
@@ -23,7 +23,8 @@ kb = ReplyKeyboardMarkup(
 			KeyboardButton(text='Рассчитать'),
 			KeyboardButton(text='Информация')
 		],
-		[KeyboardButton(text='Купить')]
+		[KeyboardButton(text='Купить')],
+		[KeyboardButton(text='Регистрация')]
 	], resize_keyboard=True
 )
 
@@ -46,6 +47,52 @@ inline_menu = InlineKeyboardMarkup(
 )
 
 
+class UserState(StatesGroup):
+	age = State()
+	growth = State()
+	weight = State()
+
+
+class RegistrationState(StatesGroup):
+	username = State()
+	email = State()
+	age = State()
+	balance = 1000
+
+
+@dp.message_handler(text='Регистрация')
+async def sing_up(message):
+	await message.answer('Введите имя пользователя (только латинский алфавит):')
+	await RegistrationState.username.set()
+
+
+@dp.message_handler(state=RegistrationState.username)
+async def set_username(message, state):
+	if is_included(message.text):
+		await message.answer('Пользователь существует, введите другое имя')
+		await RegistrationState.username.set()
+	else:
+		await state.update_data(username=message.text)
+		await message.answer('Введите свой email:')
+		await RegistrationState.email.set()
+
+
+@dp.message_handler(state=RegistrationState.email)
+async def set_email(message, state):
+	await state.update_data(email=message.text)
+	await message.answer('Введите свой возраст:')
+	await RegistrationState.age.set()
+
+
+@dp.message_handler(state=RegistrationState.age)
+async def set_age(message, state):
+	await state.update_data(age=message.text)
+	data = await state.get_data()
+	add_user(data['username'], data['email'], data['age'])
+	await message.answer('Регистрация прошла успешно!')
+	await state.finish()
+
+
 @dp.message_handler(text=['Рассчитать'])
 async def main_menu(message):
 	await message.answer('Выберите опцию:', reply_markup=kb_inline)
@@ -57,12 +104,6 @@ async def get_formulas(call):
 	await call.answer()
 
 
-class UserState(StatesGroup):
-	age = State()
-	growth = State()
-	weight = State()
-
-
 @dp.message_handler(commands=['start'])
 async def start(message):
 	await message.answer('Привет! Я бот помогающий твоему здоровью.', reply_markup=kb)
@@ -72,7 +113,7 @@ async def start(message):
 async def get_buying_list(message):
 	for i in range(len(products)):
 		await message.answer(f'Название: {products[i][1]} | Описание: {products[i][2]} | Цена: {products[i][3]}')
-		with open(f'files/banan{i+1}.png', 'rb') as img:
+		with open(f'files/banan{i + 1}.png', 'rb') as img:
 			await message.answer_photo(img, 'Выберите продукт для покупки:', reply_markup=inline_menu)
 
 
