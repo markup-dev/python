@@ -16,10 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from UrbanDjango.task2.views import index, Index2
+from django.views.generic import TemplateView
+
+from task2.views import func_view
 
 urlpatterns = [
 	path('admin/', admin.site.urls),
-	path('', index),
-	path('index2', Index2.as_view())
+	path('', func_view),
+	path('index/', TemplateView.as_view(template_name='second_task/class_template.html'), name='index'),
 ]
