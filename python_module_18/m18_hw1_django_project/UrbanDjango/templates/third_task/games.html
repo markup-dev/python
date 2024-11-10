@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+</head>
+<body>
+<div class="container">
+    <h1 class="mt-5">{{ title }}</h1>
+    <ul class="list-group mt-4">
+        {% for game, price in games.items %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            {{ game }} - {{ price }} руб.
+            <button class="btn btn-secondary">Купить</button>
+        </li>
+        {% endfor %}
+    </ul>
+    <button>
+        <a href="/" class="btn btn-primary mt-4">На главную</a>
+    </button>
+</div>
+</body>
+</html>
