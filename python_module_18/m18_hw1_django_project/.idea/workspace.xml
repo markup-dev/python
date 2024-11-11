@@ -4,12 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7b7c6ccf-e838-48c4-a88d-b18427073523" name="Changes" comment="module 18 homework 4 DTL">
-      <change afterPath="$PROJECT_DIR$/UrbanDjango/task5/forms.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UrbanDjango/templates/fifth_task/registration_page.html" afterDir="false" />
+    <list default="true" id="7b7c6ccf-e838-48c4-a88d-b18427073523" name="Changes" comment="module 18 homework 5 forms">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UrbanDjango/UrbanDjango/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/UrbanDjango/UrbanDjango/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UrbanDjango/UrbanDjango/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/UrbanDjango/UrbanDjango/urls.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,7 +91,8 @@
       <workItem from="1731172013643" duration="3947000" />
       <workItem from="1731244494569" duration="14000" />
       <workItem from="1731249910471" duration="13431000" />
-      <workItem from="1731306275823" duration="4646000" />
+      <workItem from="1731306275823" duration="7696000" />
+      <workItem from="1731320365167" duration="1721000" />
     </task>
     <task id="LOCAL-00001" summary="module 18 homework 2 views UPD">
       <option name="closed" value="true" />
@@ -137,7 +134,15 @@
       <option name="project" value="LOCAL" />
       <updated>1731261624309</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="module 18 homework 5 forms">
+      <option name="closed" value="true" />
+      <created>1731311668854</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1731311668854</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -158,6 +163,7 @@
     <MESSAGE value="module 18 homework 2 views UPD" />
     <MESSAGE value="module 18 homework 3 html tags" />
     <MESSAGE value="module 18 homework 4 DTL" />
-    <option name="LAST_COMMIT_MESSAGE" value="module 18 homework 4 DTL" />
+    <MESSAGE value="module 18 homework 5 forms" />
+    <option name="LAST_COMMIT_MESSAGE" value="module 18 homework 5 forms" />
   </component>
 </project>
