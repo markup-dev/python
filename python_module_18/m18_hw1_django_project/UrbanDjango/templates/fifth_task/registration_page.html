@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Регистрация</h1>
+
+{% if error %}
+<div style="color: red;">{{ error }}</div>
+{% endif %}
+{% if info %}
+<div style="color: green;">{{ info }}</div>
+{% endif %}
+
+<h2>Форма через Django Forms</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Отправить</button>
+</form>
+
+<h2>Форма через HTML</h2>
+<form method="post">
+    {% csrf_token %}
+    <label for="username">Введите логин:</label>
+    <input id="username" type="text" name="username" maxlength="30" required>
+
+    <label for="password">Введите пароль:</label>
+    <input id="password" type="password" name="password" minlength="8" required>
+
+    <label for="repeat_password">Повторите пароль:</label>
+    <input id="repeat_password" type="password" name="repeat_password" minlength="8" required>
+
+    <label for="age">Введите свой возраст:</label>
+    <input id="age" type="text" name="age" maxlength="3" required>
+
+    <button type="submit">Отправить</button>
+</form>
+</body>
+</html>
