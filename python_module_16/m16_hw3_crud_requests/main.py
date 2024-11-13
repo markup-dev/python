@@ -31,25 +31,25 @@ async def get_users(request: Request, user_id: int) -> HTMLResponse:
 @app.post('/user/{username}/{age}')
 async def post_user(
 		username: Annotated[str, Path(min_length=5, max_length=20, description='Enter username', example='UrbanUser')],
-		age: Annotated[int, Path(gt=18, le=120, description='Enter age', example=22)]) -> str:
+		age: Annotated[int, Path(gt=18, le=120, description='Enter age', example=22)]) -> object:
 	user_id = max((user.id for user in users), default=0) + 1
 	user = User(id=user_id, username=username, age=age)
-	print(user_id, user)
 	users.append(user)
-	return f'User {user_id} is registered'
+	print(user)
+	return user
 
 
 @app.put('/user/{user_id}/{username}/{age}')
 async def update_user(
 		user_id: Annotated[int, Path(description='Enter user id', example='1')],
 		username: Annotated[str, Path(min_length=5, max_length=20, description='Enter username', example='UrbanUser')],
-		age: Annotated[int, Path(gt=18, le=120, description='Enter age', example=22)]) -> str:
+		age: Annotated[int, Path(gt=18, le=120, description='Enter age', example=22)]) -> object:
 	try:
 		edit_user = users[user_id - 1]
 		print(user_id, edit_user)
 		edit_user.username = username
 		edit_user.age = age
-		return f'User {user_id} has been updated'
+		return edit_user
 	except IndexError:
 		raise HTTPException(status_code=404, detail="User was not found")
 
