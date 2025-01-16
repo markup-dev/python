@@ -3,7 +3,7 @@ import tkinter as tk
 
 def get_values():
 	num1 = int(number1_entry.get())
-	num2 = int(number1_entry.get())
+	num2 = int(number2_entry.get())
 	return num1, num2
 
 
